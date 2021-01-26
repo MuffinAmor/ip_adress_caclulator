@@ -26,15 +26,28 @@ namespace ip_adress
 
             string[] words = subnet.Split('.');
 
+            string binaer = "";
+
             foreach (var word in words)
             {
                 int dez;
                 string bin;
-
+                
                 dez = Convert.ToInt32(word);
                 bin = Convert.ToString(dez, 2);
-                System.Console.WriteLine($"<{bin}>");
+
+                if(bin == "0"){
+                    bin = String.Concat(Enumerable.Repeat("0", 8));
+                }
+
+                binaer += bin;
             }
+            int count = binaer.Count(f => f == '0');
+            double hosts = Math.Pow(2, count) -2;
+            Console.WriteLine(hosts);
+            
+
+
 
 
 
