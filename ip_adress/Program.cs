@@ -44,7 +44,14 @@ namespace ip_adress
             }
             int count = binaer.Count(f => f == '0');
             double hosts = Math.Pow(2, count) -2;
-            Console.WriteLine(hosts);
+            string first_ip = ipadr.Replace("0", "1");
+            string last_ip = ipadr.Replace("0", Convert.ToString(hosts));
+            string broadcast = ipadr.Replace("0", Convert.ToString(hosts+1));
+            Console.WriteLine($"Erste IP Adresse: {first_ip}");
+            Console.WriteLine($"Letzte IP Adresse: {last_ip}");
+            Console.WriteLine($"Broadcast Adresse: {broadcast}");
+            Console.WriteLine($"Anzahl Hosts: {hosts}");
+
             
 
 
