@@ -19,6 +19,27 @@ namespace ip_adress
             IPAddress[] addr = ipEntry.AddressList;
             string ip = addr[1].ToString();
             Console.WriteLine(ip);
+            Console.Write("Geben Sie ein IP-Adresse an: ");
+            String ipadr = Console.ReadLine();
+            Console.Write("Geben Sie ein Subnetzmaske ein: ");
+            String subnet = Console.ReadLine();
+
+            string[] words = subnet.Split('.');
+
+            foreach (var word in words)
+            {
+                int dez;
+                string bin;
+
+                dez = Convert.ToInt32(word);
+                bin = Convert.ToString(dez, 2);
+                System.Console.WriteLine($"<{bin}>");
+            }
+
+
+
+
+
         }  
     }  
 }
