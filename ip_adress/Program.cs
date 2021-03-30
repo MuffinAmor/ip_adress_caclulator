@@ -1,14 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;  
-using System.Linq;  
-using System.Text;  
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using System.Net; //Include this namespace 
 
 namespace ip_adress
 {
-     class Program{  
-        static void Main(string[] args)  
-        {   
+    class Program
+    {
+        static void Main(string[] args)
+        {
             //string hostName = Dns.GetHostName();
             //Console.WriteLine(hostName);  
             //string myIP = Dns.GetHostByName(hostName).AddressList[0].ToString();  
@@ -30,40 +31,29 @@ namespace ip_adress
 
             foreach (var word in words)
             {
+                Console.WriteLine(word);
                 int dez;
                 string bin;
-                
+
                 dez = Convert.ToInt32(word);
                 bin = Convert.ToString(dez, 2);
-
-                if(bin == "0"){
+    
+                if (bin == "0"){
                     bin = String.Concat(Enumerable.Repeat("0", 8));
                 }
 
                 binaer += bin;
             }
+
             int count = binaer.Count(f => f == '0');
-            double hosts = Math.Pow(2, count) -2;
-            string first_ip = ipadr.Replace("0", "1");
+            double hosts = Math.Pow(2, count) - 2;
+            string firstIp = ipadr.Replace("0", "1");
             string last_ip = ipadr.Replace("0", Convert.ToString(hosts));
-            string broadcast = ipadr.Replace("0", Convert.ToString(hosts+1));
-            Console.WriteLine($"Erste IP Adresse: {first_ip}");
+            string broadcast = ipadr.Replace("0", Convert.ToString(hosts + 1));
+            Console.WriteLine($"Erste IP Adresse: {firstIp}");
             Console.WriteLine($"Letzte IP Adresse: {last_ip}");
             Console.WriteLine($"Broadcast Adresse: {broadcast}");
             Console.WriteLine($"Anzahl Hosts: {hosts}");
-
-            
-
-
-
-
-
-
-
-        }  
-    }  
+        }
+    }
 }
- 
-   
-
-
