@@ -10,11 +10,6 @@ namespace ip_adress
     {
         static void Main(string[] args)
         {
-            //string hostName = Dns.GetHostName();
-            //Console.WriteLine(hostName);  
-            //string myIP = Dns.GetHostByName(hostName).AddressList[0].ToString();  
-            //Console.WriteLine("My IP Address is :"+myIP);  
-            //Console.ReadKey();  
             string strHostName = System.Net.Dns.GetHostName();
             IPHostEntry ipEntry = System.Net.Dns.GetHostEntry(strHostName);
             IPAddress[] addr = ipEntry.AddressList;
@@ -47,9 +42,22 @@ namespace ip_adress
 
             int count = binaer.Count(f => f == '0');
             double hosts = Math.Pow(2, count) - 2;
-            string firstIp = ipadr.Replace("0", "1");
-            string last_ip = ipadr.Replace("0", Convert.ToString(hosts));
-            string broadcast = ipadr.Replace("0", Convert.ToString(hosts + 1));
+
+
+
+
+
+            string firstIp = "192.168.40.1";
+
+
+            foreach (var i in hosts) //intschleife hier
+            {
+                
+            }
+
+
+
+
             Console.WriteLine($"Erste IP Adresse: {firstIp}");
             Console.WriteLine($"Letzte IP Adresse: {last_ip}");
             Console.WriteLine($"Broadcast Adresse: {broadcast}");
