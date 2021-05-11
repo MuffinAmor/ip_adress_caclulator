@@ -45,25 +45,12 @@ namespace ip_adress
             double hosts = Math.Pow(2, count) - 2;
 
 
-            static string IPAddrToBinary(string input)
-            {
-                return String.Join(".", ( // join segments
-                    input.Split('.').Select( // split segments into a string[]
-
-                        // take each element of array, name it "x",
-                        //   and return binary format string
-                        x => Convert.ToString(Int32.Parse(x), 2).PadLeft(8, '0')
-
-                        // convert the IEnumerable<string> to string[],
-                        // which is 2nd parameter of String.Join
-                    )).ToArray());
-            }
-
             string[] numbers = ipadr.Split('.'); //Zerlegung der IP Adresse
             string one = numbers[0];
             string two = numbers[1];
+            string three = numbers[2];
 
-            string firstIp = one + "." + two + ".0.1";
+            string firstIp = one + "." + two + "." + three + ".1";
 
 
             string binary_string = Convert.ToString(IPAddrToBinary(firstIp));
@@ -86,5 +73,20 @@ namespace ip_adress
             //Console.WriteLine($"Broadcast Adresse: {broadcast}");
             Console.WriteLine($"Anzahl Hosts: {hosts}");
         }
+
+        static string IPAddrToBinary(string input)
+        {
+            return String.Join(".", ( // join segments
+                input.Split('.').Select( // split segments into a string[]
+
+                    // take each element of array, name it "x",
+                    //   and return binary format string
+                    x => Convert.ToString(Int32.Parse(x), 2).PadLeft(8, '0')
+
+                    // convert the IEnumerable<string> to string[],
+                    // which is 2nd parameter of String.Join
+                )).ToArray());
+        }
     }
 }
+//192.168.39.100
