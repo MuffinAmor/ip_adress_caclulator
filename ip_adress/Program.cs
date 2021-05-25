@@ -5,21 +5,10 @@ using System.Text;
 using System.Net; //Include this namespace 
 
 
-
 namespace ip_adress
 {
     class Program
     {
-        public static uint[] GetIpRange(string ip, IPAddress subnet)
-        {
-            uint ip2 = Utils.IPv4ToUInt(ip);
-            uint sub = Utils.IPv4ToUInt(subnet);
-
-            uint first = ip2 & sub;
-            uint last = first | (0xffffffff & ~sub);
-
-            return new uint[] { first, last };
-        }
         static void Main(string[] args)
         {
             string strHostName = System.Net.Dns.GetHostName();
@@ -75,18 +64,32 @@ namespace ip_adress
             int third = Convert.ToInt32(tokens[2]);
 
             int fourth = Convert.ToInt32(tokens[3]);
-            for (int i = 0;
-                i < hosts;
-                i++)
-            {
-                Console.WriteLine(i);
-            }
 
+
+            int first_decade = Convert.ToInt32(one);
+            int second_decade = Convert.ToInt32(two);
+            int third_decade = Convert.ToInt32(three);
+            int fourth_decade = 0;
+
+            int zaehlwert = 0;
+            
+            for (int i = 0; i < hosts; i++)
+            {
+                if (zaehlwert > 254)
+                {
+                    third_decade += 1;
+                    zaehlwert = zaehlwert * 0;
+                }
+                else
+                {
+                    zaehlwert += 1;
+                }
+            }
 
             Console.WriteLine($"Erste IP Adresse: {firstIp}");
 
-            //Console.WriteLine($"Letzte IP Adresse: {last_ip}");
-            //Console.WriteLine($"Broadcast Adresse: {broadcast}");
+            Console.WriteLine($"Letzte IP Adresse: {first_decade}.{second_decade}.{third_decade}.{zaehlwert}");
+            Console.WriteLine($"Broadcast Adresse: {first_decade}.{second_decade}.{third_decade}.{zaehlwert+1}");
             Console.WriteLine($"Anzahl Hosts: {hosts}");
         }
 
