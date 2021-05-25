@@ -71,18 +71,19 @@ namespace ip_adress
             int third_decade = Convert.ToInt32(three);
             int fourth_decade = 0;
 
-            int zaehlwert = 0;
+            double zaehlwert = 0;
             
             for (int i = 0; i < hosts; i++)
             {
                 if (zaehlwert > 254)
                 {
                     third_decade += 1;
-                    zaehlwert = zaehlwert * 0;
+                    zaehlwert = 0;
                 }
                 else
                 {
                     zaehlwert += 1;
+                    Console.WriteLine(zaehlwert);
                 }
             }
 
