@@ -4,10 +4,22 @@ using System.Linq;
 using System.Text;
 using System.Net; //Include this namespace 
 
+
+
 namespace ip_adress
 {
     class Program
     {
+        public static uint[] GetIpRange(string ip, IPAddress subnet)
+        {
+            uint ip2 = Utils.IPv4ToUInt(ip);
+            uint sub = Utils.IPv4ToUInt(subnet);
+
+            uint first = ip2 & sub;
+            uint last = first | (0xffffffff & ~sub);
+
+            return new uint[] { first, last };
+        }
         static void Main(string[] args)
         {
             string strHostName = System.Net.Dns.GetHostName();
@@ -41,6 +53,7 @@ namespace ip_adress
                 binaer += bin;
             }
 
+
             int count = binaer.Count(f => f == '0');
             double hosts = Math.Pow(2, count) - 2;
 
@@ -60,15 +73,18 @@ namespace ip_adress
             int first = Convert.ToInt32(tokens[0]);
             int second = Convert.ToInt32(tokens[1]);
             int third = Convert.ToInt32(tokens[2]);
-            int fourth = Convert.ToInt32(tokens[3]);
 
-            for (int i = 0; i < hosts; i++)
+            int fourth = Convert.ToInt32(tokens[3]);
+            for (int i = 0;
+                i < hosts;
+                i++)
             {
                 Console.WriteLine(i);
             }
 
 
             Console.WriteLine($"Erste IP Adresse: {firstIp}");
+
             //Console.WriteLine($"Letzte IP Adresse: {last_ip}");
             //Console.WriteLine($"Broadcast Adresse: {broadcast}");
             Console.WriteLine($"Anzahl Hosts: {hosts}");
