@@ -58,6 +58,8 @@ namespace ip_adress
             string binary_string = Convert.ToString(IPAddrToBinary(firstIp));
             Console.WriteLine(binary_string);
 
+
+            int first_decade = Convert.ToInt32(one);
             string[] tokens = binary_string.Split('.'); //Zerlegung des Binary Strings
             int first = Convert.ToInt32(tokens[0]);
             int second = Convert.ToInt32(tokens[1]);
@@ -66,16 +68,21 @@ namespace ip_adress
             int fourth = Convert.ToInt32(tokens[3]);
 
 
-            int first_decade = Convert.ToInt32(one);
             int second_decade = Convert.ToInt32(two);
             int third_decade = Convert.ToInt32(three);
             int fourth_decade = 0;
 
             double zaehlwert = 0;
-            
+
             for (int i = 0; i < hosts; i++)
             {
-                if (zaehlwert > 254)
+                if (third_decade > 254)
+                {
+                    second_decade += 1;
+                    third_decade = 0;
+                    zaehlwert = 0;
+                }
+                else if (zaehlwert > 254)
                 {
                     third_decade += 1;
                     zaehlwert = 0;
@@ -87,10 +94,11 @@ namespace ip_adress
                 }
             }
 
+
             Console.WriteLine($"Erste IP Adresse: {firstIp}");
 
             Console.WriteLine($"Letzte IP Adresse: {first_decade}.{second_decade}.{third_decade}.{zaehlwert}");
-            Console.WriteLine($"Broadcast Adresse: {first_decade}.{second_decade}.{third_decade}.{zaehlwert+1}");
+            Console.WriteLine($"Broadcast Adresse: {first_decade}.{second_decade}.{third_decade}.{zaehlwert + 1}");
             Console.WriteLine($"Anzahl Hosts: {hosts}");
         }
 
