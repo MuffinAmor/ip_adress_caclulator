@@ -32,7 +32,7 @@ namespace ip_adress.lib
                 )).ToArray());
         }
 
-        public string Calc_Work_String(string ip_address, string subnetz)
+        private string Calc_Work_String(string ip_address, string subnetz)
         {
             var binString = IPAddrToBinary(ip_address);
             var source = IPAddrToBinary(subnetz);
@@ -43,17 +43,15 @@ namespace ip_adress.lib
 
             foreach (var i in net)
             {
-                counter += 1;
-                if (counter % 9 == 0 & i != 0)
+                if (counter % 8 == 0 & i != 0 & i != 1)
                 {
                     lastAddress += ".";
                 }
-                else
-                {
-                    lastAddress += i;
-                }
+                lastAddress += i;
+                counter += 1;
             }
 
+            Console.WriteLine(lastAddress);
             return lastAddress;
         }
 
