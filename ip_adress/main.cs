@@ -30,17 +30,20 @@ namespace ip_adress
             var outputNetFirstBin = new AddressCalculation().Calc_First(ipadr, subnet);
             var outputNetLastBin = new AddressCalculation().Calc_Last(ipadr, subnet);
 
-            //var outputNetMaskIp = new AddressCalculation().ConvertToIp(outputNetBroadBin);
+            var outputNetMaskIp = new AddressCalculation().ConvertToIp(outputNetMaskBin);
+            var outputNetBroadIp = new AddressCalculation().ConvertToIp(outputNetBroadBin);
+            var outputNetFirstIp = new AddressCalculation().ConvertToIp(outputNetFirstBin);
+            var outputNetLastIp = new AddressCalculation().ConvertToIp(outputNetLastBin);
 
             
             var outputHosts = new AddressCalculation().Calc_Host(subnet);
 
             Console.WriteLine($"IP Adresse: {outputIp} - {ipadr}");
             Console.WriteLine($"Subnetzmaske: {outputSubnet} - {subnet}");
-            //Console.WriteLine($"Netzwerk: {outputNetMaskBin} - {outputNetMaskIp}");
-            Console.WriteLine($"Erste IP: {outputNetFirstBin} - ");
-            Console.WriteLine($"Letzte IP: {outputNetLastBin} - ");
-            Console.WriteLine($"Broadcast: {outputNetBroadBin} - ");
+            Console.WriteLine($"Netzwerk: {outputNetMaskBin} - {outputNetMaskIp}");
+            Console.WriteLine($"Erste IP: {outputNetFirstBin} - {outputNetFirstIp}");
+            Console.WriteLine($"Letzte IP: {outputNetLastBin} - {outputNetLastIp}");
+            Console.WriteLine($"Broadcast: {outputNetBroadBin} - {outputNetBroadIp}");
             Console.WriteLine($"Anzahl mögliche Hosts: {outputHosts}");
         }
     }

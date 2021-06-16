@@ -39,14 +39,23 @@ namespace ip_adress.lib
             var count = source.Count(f => f == '1');
             var net = binString.Replace(".", "").Substring(0, count);
             var counter = 0;
+            bool firstPass = true;
             var lastAddress = "";
 
             foreach (var i in net)
             {
-                if (counter % 8 == 0 & i != 0 & i != 1)
+                if (!firstPass)
                 {
-                    lastAddress += ".";
+                    if (counter % 8 == 0 & i != 0 & i != 1)
+                    {
+                        lastAddress += ".";
+                    }
                 }
+                else
+                {
+                    firstPass = false;
+                }
+
                 lastAddress += i;
                 counter += 1;
             }
@@ -86,7 +95,7 @@ namespace ip_adress.lib
         public string Calc_Last(string ip_address, string subnetz)
         {
             var workAddress = Calc_Work_String(ip_address, subnetz);
-            var addressLength = workAddress.Length;
+            var addressLength = workAddress.Length + 1;
             var lastAddress = workAddress;
 
             for (var i = addressLength; i < 35; i++)
@@ -112,7 +121,8 @@ namespace ip_adress.lib
         public string Calc_First(string ip_address, string subnetz)
         {
             var workAddress = Calc_Work_String(ip_address, subnetz);
-            var addressLength = workAddress.Length;
+            //var addressLength = workAddress.Length;
+            var addressLength = workAddress.Length + 1;
             var firstAddress = workAddress;
 
             for (var i = addressLength; i < 35; i++)
@@ -138,7 +148,7 @@ namespace ip_adress.lib
         public string Calc_Broad(string ip_address, string subnetz)
         {
             var workAddress = Calc_Work_String(ip_address, subnetz);
-            var addressLength = workAddress.Length;
+            var addressLength = workAddress.Length + 1;
             var broadAddress = workAddress;
 
             for (var i = addressLength; i < 36; i++)
@@ -159,7 +169,7 @@ namespace ip_adress.lib
         public string Calc_Net(string ip_address, string subnetz)
         {
             var workAddress = Calc_Work_String(ip_address, subnetz);
-            var addressLength = workAddress.Length;
+            var addressLength = workAddress.Length + 1;
             var netAddress = workAddress;
 
             for (var i = addressLength; i < 35; i++)
