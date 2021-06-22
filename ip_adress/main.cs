@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Net; //Include this namespace 
 using ip_adress.lib;
 
 
@@ -45,6 +41,11 @@ namespace ip_adress
             Console.WriteLine($"Letzte IP: {outputNetLastBin} - {outputNetLastIp}");
             Console.WriteLine($"Broadcast: {outputNetBroadBin} - {outputNetBroadIp}");
             Console.WriteLine($"Anzahl mögliche Hosts: {outputHosts}");
+
+
+            var nextAddressBin = new SubnetCalculation().CalcSubNetIp(outputNetBroadBin);
+            var nextAddressIp = new AddressCalculation().ConvertToIp(nextAddressBin);
+            Console.WriteLine($"Nächste Adresse: {nextAddressBin} - {nextAddressIp}");
         }
     }
 }
