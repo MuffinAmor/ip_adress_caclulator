@@ -98,14 +98,14 @@ namespace ip_adress.lib
             var addressLength = workAddress.Length + 1;
             var lastAddress = workAddress;
 
-            for (var i = addressLength; i < 35; i++)
+            for (var i = addressLength; i < 36; i++)
             {
                 if (i % 9 == 0 & i != 0)
                 {
                     lastAddress += ".";
                 }
 
-                if (i < 34)
+                if (i < 35)
                 {
                     lastAddress += "1";
                 }
@@ -125,14 +125,14 @@ namespace ip_adress.lib
             var addressLength = workAddress.Length + 1;
             var firstAddress = workAddress;
 
-            for (var i = addressLength; i < 35; i++)
+            for (var i = addressLength; i < 36; i++)
             {
                 if (i % 9 == 0 & i != 0)
                 {
                     firstAddress += ".";
                 }
 
-                if (i < 34)
+                if (i < 35)
                 {
                     firstAddress += "0";
                 }
@@ -172,7 +172,7 @@ namespace ip_adress.lib
             var addressLength = workAddress.Length + 1;
             var netAddress = workAddress;
 
-            for (var i = addressLength; i < 35; i++)
+            for (var i = addressLength; i < 36; i++)
             {
                 if (i % 9 == 0 & i != 0)
                 {
