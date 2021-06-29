@@ -54,7 +54,6 @@ namespace ip_adress.lib
                 counter += 1;
             }
 
-            Console.WriteLine(lastAddress);
             return lastAddress;
         }
 
